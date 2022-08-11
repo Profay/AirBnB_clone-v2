@@ -137,7 +137,7 @@ class HBNBCommand(cmd.Cmd):
                 else:
                     first[1] = int(first[1])
                 setattr(new_instance, first[0], first[1])
-            except(Exception):
+            except (Exception):
                 continue
 
         new_instance.save()
@@ -204,7 +204,7 @@ class HBNBCommand(cmd.Cmd):
         key = c_name + "." + c_id
 
         try:
-            del(storage.all()[key])
+            del (storage.all()[key])
             storage.save()
         except KeyError:
             print("** no instance found **")
