@@ -17,7 +17,7 @@ class FileStorage:
             for key in FileStorage.__objects:
                 if FileStorage.__objects[key].__class__ == cls:
                     new_dict[key] = FileStorage.__objects[key]
-        return new_dict
+            return new_dict
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -25,12 +25,13 @@ class FileStorage:
 
     def save(self):
         """Saves storage dictionary to file"""
+        print("ca passe par save filestorage")
         with open(FileStorage.__file_path, 'w') as f:
             temp = {}
             temp.update(FileStorage.__objects)
             for key, val in temp.items():
                 temp[key] = val.to_dict()
-            json.dump(temp, f)
+            json.dump(temp, f, indent=2)
 
     def reload(self):
         """Loads storage dictionary from file"""
@@ -57,9 +58,10 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        """delete obj from __objects"""
-        if obj == None:
+        """function that deletes an object"""
+        if obj is None:
             return
+
         else:
+            print(f"dans delete passe-ton par là ? objet:{obj.__class__.__name__}")
             del(FileStorage.__objects[f"{obj.__class__.__name__}.{obj.id}"])
-              
