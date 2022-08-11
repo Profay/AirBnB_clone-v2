@@ -168,5 +168,5 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 ## :couple: About us ##
 This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
 If you have a question or a comment, please contact us.<br>
-Raphael Chemouni <rapha.chemouni@gmail.com><br>
+Raphael Chemouni (rapha.chemouni@gmail.com)<br>
 Hiromi VARNIER (4336@holbertonschool.com)<br>
