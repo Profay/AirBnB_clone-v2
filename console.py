@@ -123,19 +123,23 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         new_instance = HBNBCommand.classes[new[0]]()
+        
         for i in range(1, len(new)):
             first = new[i].split("=")
             try:
-                if first[1][0] == '\"':
-                    first[1] = first[1].replace('\"', "")
+                if first[1][0] == "\"":
+                    first[1] = first[1].replace("\"", "")
                     first[1] = first[1].replace("_", " ")
+
                 elif "." in first[1]:
                     first[1] = float(first[1])
+
                 else:
                     first[1] = int(first[1])
                 setattr(new_instance, first[0], first[1])
-            except Exception:
+            except:
                 continue
+
         new_instance.save()
         print(new_instance.id)
 
