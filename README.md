@@ -140,3 +140,10 @@ Usage: <class_name>.update(<_id>, <dictionary>)
 (hbnb) ["[User] (98bea5de-9cb0-4d78-8a9d-c4de03521c30) {'updated_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134362), 'name': 'Fred the Frog', 'age': 9, 'id': '98bea5de-9cb0-4d78-8a9d-c4de03521c30', 'created_at': datetime.datetime(2020, 2, 19, 21, 47, 29, 134343)}"]
 ```
 <br>
+
+
+## :couple: About us ##
+This is the first group project in Holberton Paris School in the 26 June 2022!!<br>
+If you have a question or a comment, please contact us.<br>
+Raphael Chemouni <rapha.chemouni@gmail.com>
+Hiromi VARNIER (4336@holbertonschool.com)<br>
