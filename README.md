@@ -91,6 +91,7 @@ $
 ## STEP 2: The Console
 ![flowchart_the_console](https://user-images.githubusercontent.com/69083631/176741298-c3505293-486d-4b5d-a31f-b120f9ee8ed3.png)
 
+![hbnb_step2](https://user-images.githubusercontent.com/69083631/184122824-9159c4f9-fe78-4281-91d3-6138313dc696.png)
 
 
 ###### Example 0: Create an object
