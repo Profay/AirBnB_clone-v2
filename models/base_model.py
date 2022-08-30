@@ -6,11 +6,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, String, DateTime
 from os import getenv
 
-if getenv("HBNB_TYPE_STORAGE") == "db":
-    Base = declarative_base()
-else:
-    Base = object
-    
+
+Base = declarative_base()
 
 
 class BaseModel:
@@ -70,7 +67,7 @@ class BaseModel:
         return dictionary
 
     def delete(self):
-        """to delete the current instance from the storage by 
+        """to delete the current instance from the storage by
             calling the method delete"""
         from models import storage
         storage.delete()
