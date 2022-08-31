@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-'''script that generates a .tgz archive'''
+"""script that generates a .tgz archive"""
 
 from fabric.api import local
 from datetime import datetime
 
+
 def do_pack():
-    '''function do_pack'''
+    """function do_pack"""
     local('mkdir -p versions')
     time = datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")
     file = "versions/web_static_{}.tgz".format(time)
