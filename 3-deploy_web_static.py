@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''distributes an archive to your web servers'''
+"""distributes an archive to your web servers"""
 
 from os.path import exists
 from datetime import datetime
@@ -8,7 +8,7 @@ env.hosts = ['50.19.193.215', '54.227.31.122']
 
 
 def do_pack():
-    '''function do_pack'''
+    """function do_pack"""
     local('mkdir -p versions')
     time = datetime.strftime(datetime.now(), "%Y%m%d%H%M%S")
     file = "versions/web_static_{}.tgz".format(time)
@@ -20,7 +20,7 @@ def do_pack():
 
 
 def do_deploy(archive_path):
-    '''function do_deploy'''
+    """function do_deploy"""
     if not exists(archive_path):
         return False
     try:
@@ -40,8 +40,9 @@ def do_deploy(archive_path):
     except Exception:
         return False
 
+
 def deploy():
-    '''function deploy'''
+    """function deploy"""
     archive = do_pack()
     if archive is None:
         return False
