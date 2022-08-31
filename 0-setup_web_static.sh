@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # sets up web servers for the deployment of web_static
+
 if [ ! -x /usr/sbin/nginx ]; then
     apt-get update
     apt-get -y install nginx
@@ -10,7 +11,7 @@ mkdir -p /data/web_static/shared/
 
 echo 'holberton' > /data/web_static/releases/test/index.html
 
-ln -s /data/web_static/releases/test/ /data/web_static/current
+ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 chown -R ubuntu:ubuntu /data
 
