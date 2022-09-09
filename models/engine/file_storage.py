@@ -59,4 +59,8 @@ class FileStorage:
     def delete(self, obj=None):
         """function that deletes an object"""
         if obj:
-            del(FileStorage.__objects[f"{obj.__class__.__name__}.{obj.id}"])
+            del(FileStorage.__objects["{}.{}".format(obj.__class__.__name__, obj.id)])
+
+    def close(self):
+        """function for deserializing the JSON file to objects"""
+        self.reload()
