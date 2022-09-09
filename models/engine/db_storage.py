@@ -6,7 +6,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
 
-
 class DBStorage():
     """the DBStorage class"""
 
@@ -81,4 +80,4 @@ class DBStorage():
 
     def close(self):
         """Close method: close or remove the session"""
-        self.__session.close()
+        self.__session.remove()
