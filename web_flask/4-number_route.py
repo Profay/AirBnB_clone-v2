@@ -2,19 +2,18 @@
 """a script that starts a Flask web application"""
 
 from flask import Flask
-
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
 def hello():
-    """ print hello world """
+    """ display hello world """
     return "Hello HBNB!"
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """ print HBNB """
+    """ display HBNB """
     return "HBNB"
 
 
@@ -32,10 +31,10 @@ def pythoniscool(text='is cool'):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def nisanumber(n):
+def isitanumber(n):
     """display “n is a number”"""
     return "{:d} is a number".format(n)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5003)
+    app.run(host="0.0.0.0", port=5003, debug=True)
