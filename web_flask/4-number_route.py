@@ -30,10 +30,10 @@ def pythoniscool(text='is cool'):
     return 'Python ' + text.replace('_', ' ')
 
 
-@app.route('/number/<int=n>', strict_slashes=False)
+@app.route('/number/<int:n>', strict_slashes=False)
 def nisanumber(n):
     """display “n is a number”"""
-    return "{:d} is a number".format(n)
+    return '{} is a number'.format(n)
 
 
 if __name__ == '__main__':
