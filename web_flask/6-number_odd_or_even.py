@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# a script that starts a Flask web application
+"""a script that starts a Flask web application"""
 
 from flask import Flask, render_template
 
@@ -32,7 +32,7 @@ def pythoniscool(text='is cool'):
 
 
 @app.route('/number/<int:n>', strict_slashes=False)
-def nisanumber(n):
+def isitanumber(n):
     """display “n is a number”"""
     return "{:d} is a number".format(n)
 
@@ -44,7 +44,7 @@ def number_templates(n):
 
 
 @app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
-def number_odd_even(n):
+def oddoreven(n):
     """display an HTML page if n is an int"""
     return render_template('6-number_odd_or_even.html', n=n)
 

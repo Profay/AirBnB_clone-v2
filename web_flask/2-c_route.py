@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# a script that starts a Flask web application
+"""a script that starts a Flask web application"""
 
 from flask import Flask
 
@@ -25,4 +25,4 @@ def cisfun(text):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="0.0.0.0", port=5003)

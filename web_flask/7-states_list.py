@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""This module starts a Flask web application"""
+"""a script that starts a Flask web application"""
+
 from flask import Flask, render_template
 from models import storage
 from models.state import State
@@ -15,13 +16,10 @@ def states_list():
 
 
 @app.teardown_appcontext
-def tear_down(exception):
+def teardown(exception):
     """The method remove the current SQLAlchemy Session"""
     storage.close()
 
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5003)
-
-
-
-
