@@ -30,11 +30,11 @@ def pythoniscool(text='is cool'):
     return 'Python ' + text.replace('_', ' ')
 
 
-@app.route('/number/<int:n>', strict_slashes=False)
-def isitanumber(n):
+@app.route('/number/<n>', strict_slashes=False)
+def isitanumber(int=n):
     """display “n is a number”"""
     return "{:d} is a number".format(n)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5003, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
