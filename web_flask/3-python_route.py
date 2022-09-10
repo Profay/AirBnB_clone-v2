@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""a script that starts a Flask web application"""
+"""a script that starts a Flask web application port 5000"""
 
 from flask import Flask
 
@@ -32,4 +32,4 @@ def pythoniscool(text='is cool'):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5003)
+    app.run(host="0.0.0.0", port=5000)
