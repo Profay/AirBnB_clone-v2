@@ -11,14 +11,14 @@ app = Flask(__name__)
 
 @app.route('/states', strict_slashes=False)
 def states():
-    """The method lists all State"""
+    """display lists of State"""
     list_state = storage.all(State).values()
     return render_template('7-states_list.html', list_state=list_state)
 
 
 @app.route('/states/<id>', strict_slashes=False)
 def states_id(id):
-    """The method lists all State and all cities for State thanks an id"""
+    """display lists all State and all cities for State"""
     list_state = storage.all(State).values()
     for state in list_state:
         if state.id == id:
@@ -33,4 +33,4 @@ def teardown(exception):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5003)
+    app.run(host="0.0.0.0", port=5000, debug=True)
