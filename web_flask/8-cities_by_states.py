@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 @app.route('/cities_by_states', strict_slashes=False)
 def cities_by_states():
-    """The method list all cities of a State"""
+    """ display the list cities of a State"""
     list_state = storage.all(State).values()
     return render_template('8-cities_by_states.html',
                            list_states=list_state)
@@ -24,4 +24,4 @@ def teardown(exception):
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", post=5003)
+    app.run(host="0.0.0.0", post=5000, debug=True)
