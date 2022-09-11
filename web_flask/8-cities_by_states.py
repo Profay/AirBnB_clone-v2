@@ -13,7 +13,7 @@ def cities_by_states():
     """ display the list cities of a State"""
     list_state = storage.all(State).values()
     return render_template('8-cities_by_states.html',
-                           list_states=list_state)
+                           list_state=list_state)
 
 
 @app.teardown_appcontext
