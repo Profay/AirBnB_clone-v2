@@ -27,7 +27,16 @@
 
 	line-height: 20px;
 }
+.amenities {
+	display: inline;
+	vertical-align: middle;
+	height: 100%;
+	float: left;
+    width: 25%;
 
+
+	line-height: 20px;
+}
 .popover {
 	list-style-type: none;
 	display: none;
@@ -42,8 +51,8 @@
 	border-radius: 4px;
 	
 	max-height: 300px;
-	z-index: 1;
-  	overflow: auto;
+	z-index: 100;
+  	overflow: scroll;
 }
 
 .locations:hover .popover {
