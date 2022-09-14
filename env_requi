@@ -1,0 +1,5 @@
+sudo apt install mysql-server
+sudo service mysql start
+sudo apt-get install python3-dev
+sudo pip3 install mysqlclient
+sudo pip3 install SQLAlchemy
