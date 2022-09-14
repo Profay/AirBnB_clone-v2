@@ -12,7 +12,6 @@ import cmd
 from io import StringIO
 from console import HBNBCommand
 import console
-import pycodestyle
 from unittest.mock import patch
 from models.base_model import BaseModel
 from models.user import User
@@ -91,14 +90,6 @@ class TestBasicCaseAndDoc(unittest.TestCase):
 
         module_class = len(HBNBCommand.help_update.__doc__)
         self.assertGreater(module_class, 0)
-
-    def test_pycodeStyle(self):
-        """Test that we conform to PEP-8."""
-        style = pycodestyle.StyleGuide(quiet=True)
-        result = style.check_files(["console.py"])
-        self.assertEqual(
-            result.total_errors, 0, "Found code style errors (pycodestyle)."
-        )
 
     def test_prompt(self):
         """

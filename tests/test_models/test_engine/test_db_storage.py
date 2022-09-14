@@ -3,7 +3,6 @@
 Unit tests for tha database storage.
 """
 import unittest
-import pycodestyle
 from models.engine.db_storage import DBStorage
 
 

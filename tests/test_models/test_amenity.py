@@ -8,7 +8,6 @@ import inspect
 from models import amenity
 from models.base_model import BaseModel
 import os
-import pep8
 import unittest
 from sqlalchemy.orm.attributes import InstrumentedAttribute
 Amenity = amenity.Amenity
@@ -20,20 +19,6 @@ class TestAmenityDocs(unittest.TestCase):
     def setUpClass(cls):
         """Set up for the doc tests"""
         cls.amenity_f = inspect.getmembers(Amenity, inspect.isfunction)
-
-    def test_pep8_conformance_amenity(self):
-        """Test that models/amenity.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['models/amenity.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
-
-    def test_pep8_conformance_test_amenity(self):
-        """Test that tests/test_models/test_amenity.py conforms to PEP8."""
-        pep8s = pep8.StyleGuide(quiet=True)
-        result = pep8s.check_files(['tests/test_models/test_amenity.py'])
-        self.assertEqual(result.total_errors, 0,
-                         "Found code style errors (and warnings).")
 
     def test_amenity_module_docstring(self):
         """Test for the amenity.py module docstring"""
@@ -67,14 +52,6 @@ class TestAmenity(unittest.TestCase):
         self.assertTrue(hasattr(amenity, "id"))
         self.assertTrue(hasattr(amenity, "created_at"))
         self.assertTrue(hasattr(amenity, "updated_at"))
-
-    @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') == 'db',
-                     "Testing DBStorage")
-    def test_name_attr(self):
-        """Test that Amenity has attribute name, and it's as an empty string"""
-        amenity = Amenity()
-        self.assertTrue(hasattr(amenity, "name"))
-        self.assertEqual(amenity.name, "")
 
     @unittest.skipIf(os.getenv('HBNB_TYPE_STORAGE') != 'db',
                      "Testing FileStorage")
