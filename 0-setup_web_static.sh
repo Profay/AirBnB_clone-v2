@@ -14,3 +14,4 @@ ln -sf /data/web_static/releases/test/ /data/web_static/current
 sed -i '38i\\tlocation /hbnb_static/ {\n\t\talias /data/web_static/current/;\n\t\tautoindex off;\n\t}' /etc/nginx/sites-enabled/default
 
 sudo service nginx restart
+exit 0
