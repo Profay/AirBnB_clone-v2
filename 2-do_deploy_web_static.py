@@ -33,27 +33,27 @@ def do_deploy(archive_path):
         put(archive_path, '/tmp/')
 
         "Create the destination directory"
-        run('mkdir -p {}'.format(where_to_unzip))
+        run('sudo mkdir -p {}'.format(where_to_unzip))
 
         "Unzipped the zipped file to the directory created"
-        run('tar -xzf {} -C {}'.format(tmp_path, where_to_unzip))
+        run('sudo tar -xzf {} -C {}'.format(tmp_path, where_to_unzip))
 
         "Remove the zipped file in /tmp/"
-        run('rm {}'.format(tmp_path))
+        run('sudo rm {}'.format(tmp_path))
 
         "Transfer the file from <>/web_static/ to <> i.e rm /web_static/."
-        run('mv {}web_static/* {}'.format(where_to_unzip, where_to_unzip))
+        run('sudo mv {}web_static/* {}'.format(where_to_unzip, where_to_unzip))
 
         "Finally removing web_static after file transfer"
-        run('rm -rf {}web_static'.format(where_to_unzip))
+        run('sudo rm -rf {}web_static'.format(where_to_unzip))
 
         "Remove the previous symbolic link"
-        run('rm -rf /data/web_static/current')
+        run('sudo rm -rf /data/web_static/current')
 
         "Create another symbolic link"
-        run('ln -s {} /data/web_static/current'.format(where_to_unzip))
+        run('sudo ln -s {} /data/web_static/current'.format(where_to_unzip))
 
         print('New version deployed!')
         return True
-    except Exception:
-        return False
+    except Exception as e:
+        print(e)
