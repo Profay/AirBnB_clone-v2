@@ -1,53 +1,59 @@
-#r!/usr/bin/python3
-""" Function that deploys """
-from datetime import datetime
-from fabric.api import *
-import os
-import shlex
+#!/usr/bin/python3
+"""distributes an archive to your web servers"""
 
-
+from os.path import exists
+from fabric.api import put, run, env
 env.hosts = ['3.91.63.125', '3.239.2.120']
 env.user = "ubuntu"
 
 
-def do_pack():
-    try:
-        if not os.path.exists("versions"):
-            local('mkdir versions')
-        t = datetime.now()
-        f = "%Y%m%d%H%M%S"
-        archive_path = 'versions/web_static_{}.tgz'.format(t.strftime(f))
-        local('tar -cvzf {} web_static'.format(archive_path))
-        return archive_path
-    except:
-        return None
-
-
 def do_deploy(archive_path):
-    """ Deploys """
-    if not os.path.exists(archive_path):
+    """function do_deploy"""
+
+    path = '/data/web_static/releases/'
+    """spliting the archived path at /.
+    removing versions dir example:
+    versions/web_static_20170315003959.tgz
+    """
+    file_name = archive_path.split('/')[1]
+
+    " remove .tgz "
+    no_extention = file_name.split('.')[0]
+
+    "Set destination path for unziping"
+    where_to_unzip = ('{}' + '{}/').format(path, no_extention)
+
+    "Set destination path for storing zipped file"
+    tmp_path = ('/tmp/{}').format(file_name)
+
+    if not exists(archive_path):
         return False
     try:
-        name = archive_path.replace('/', ' ')
-        name = shlex.split(name)
-        name = name[-1]
+        "Store zipped file in /tmp/"
+        put(archive_path, '/tmp/')
 
-        wname = name.replace('.', ' ')
-        wname = shlex.split(wname)
-        wname = wname[0]
+        "Create the destination directory"
+        run('mkdir -p {}'.format(where_to_unzip))
 
-        releases_path = "/data/web_static/releases/{}/".format(wname)
-        tmp_path = "/tmp/{}".format(name)
+        "Unzipped the zipped file to the directory created"
+        run('tar -xzf {} -C {}'.format(tmp_path, where_to_unzip))
 
-        put(archive_path, "/tmp/")
-        run("sudo mkdir -p {}".format(releases_path))
-        run("sudo tar -xzf {} -C {}".format(tmp_path, releases_path))
-        run("sudo rm {}".format(tmp_path))
-        run("sudo mv {}web_static/* {}".format(releases_path, releases_path))
-        run("sudo rm -rf {}web_static".format(releases_path))
-        run("sudo rm -rf /data/web_static/current")
-        run("sudo ln -s {} /data/web_static/current".format(releases_path))
-        print("New version deployed!")
+        "Remove the zipped file in /tmp/"
+        run('rm {}'.format(tmp_path))
+
+        "Transfer the file from <>/web_static/ to <> i.e rm /web_static/."
+        run('mv {}web_static/* {}'.format(where_to_unzip, where_to_unzip))
+
+        "Finally removing web_static after file transfer"
+        run('rm -rf {}web_static'.format(where_to_unzip))
+
+        "Remove the previous symbolic link"
+        run('rm -rf /data/web_static/current')
+
+        "Create another symbolic link"
+        run('ln -s {} /data/web_static/current'.format(where_to_unzip))
+
+        print('New version deployed!')
         return True
-    except:
+    except Exception:
         return False
