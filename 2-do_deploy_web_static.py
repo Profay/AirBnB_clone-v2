@@ -1,28 +1,53 @@
-#!/usr/bin/python3
-"""distributes an archive to your web servers"""
+#r!/usr/bin/python3
+""" Function that deploys """
+from datetime import datetime
+from fabric.api import *
+import os
+import shlex
 
-from os.path import exists
-from fabric.api import put, run, env
-env.hosts = ['50.19.193.215', '54.227.31.122']
+
+env.hosts = ['3.91.63.125', '3.239.2.120']
+env.user = "ubuntu"
+
+
+def do_pack():
+    try:
+        if not os.path.exists("versions"):
+            local('mkdir versions')
+        t = datetime.now()
+        f = "%Y%m%d%H%M%S"
+        archive_path = 'versions/web_static_{}.tgz'.format(t.strftime(f))
+        local('tar -cvzf {} web_static'.format(archive_path))
+        return archive_path
+    except:
+        return None
 
 
 def do_deploy(archive_path):
-    """function do_deploy"""
-    if not exists(archive_path):
+    """ Deploys """
+    if not os.path.exists(archive_path):
         return False
     try:
-        path = '/data/web_static/releases/'
-        file_name = archive_path.split('/')[1]
-        no_extention = file_name.split('.')[0]
-        put(archive_path, '/tmp/')
-        run('mkdir -p {}{}/'.format(path, no_extention))
-        run('tar -xzf /tmp/{} -C {}{}/'.format(file_name, path, no_extention))
-        run('rm /tmp/{}'.format(file_name))
-        run('mv {0}{1}/web_static/* {0}{1}/'.format(path, no_extention))
-        run('rm -rf {}{}/web_static'.format(path, no_extention))
-        run('rm -rf /data/web_static/current')
-        run('ln -s {}{}/ /data/web_static/current'.format(path, no_extention))
-        print('New version deployed!')
+        name = archive_path.replace('/', ' ')
+        name = shlex.split(name)
+        name = name[-1]
+
+        wname = name.replace('.', ' ')
+        wname = shlex.split(wname)
+        wname = wname[0]
+
+        releases_path = "/data/web_static/releases/{}/".format(wname)
+        tmp_path = "/tmp/{}".format(name)
+
+        put(archive_path, "/tmp/")
+        run("sudo mkdir -p {}".format(releases_path))
+        run("sudo tar -xzf {} -C {}".format(tmp_path, releases_path))
+        run("sudo rm {}".format(tmp_path))
+        run("sudo mv {}web_static/* {}".format(releases_path, releases_path))
+        run("sudo rm -rf {}web_static".format(releases_path))
+        run("sudo rm -rf /data/web_static/current")
+        run("sudo ln -s {} /data/web_static/current".format(releases_path))
+        print("New version deployed!")
         return True
-    except Exception:
+    except:
         return False
