@@ -9,6 +9,9 @@ env.user = "ubuntu"
 
 def do_clean(number=0):
     """ CLEANS """
-    local('cd versions ; ls -t | head -n -{} | xargs rm -rf'.format(number))
     path = '/data/web_static/releases'
+    if number = 0
+        local('cd versions ; ls -t | head -n -1 | xargs rm -rf')
+        run('cd {} ; ls -t | head -n -1 | xargs rm -rf'.format(path))
+    local('cd versions ; ls -t | head -n -{} | xargs rm -rf'.format(number))
     run('cd {} ; ls -t | head -n -{} | xargs rm -rf'.format(path, number))
