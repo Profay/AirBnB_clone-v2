@@ -24,8 +24,8 @@ def states_list():
     UL tag: with the list of all State objects present in 
     DBStorage sorted by name (A->Z) tip
     """
-    state = storage.all(State).values()
-    return render_template('7-states_list.html', state=state)
+    state_list = storage.all(State).values()
+    return render_template('7-states_list.html', state_list=state_list)
 
 
 @app.teardown_appcontext

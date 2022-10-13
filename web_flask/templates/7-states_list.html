@@ -5,8 +5,8 @@
     </head>
     <body>
         <h1>States</h1>
-        {% for States in state | sort(attribute='name') %}
-            <li>{{state.id}}: {{state.name}}</li>
+        {% for States in state_list | sort(attribute='name') %}
+            <li>{{States.id}}: {{States.name}}</li>
         {% endfor %}
     </body>
 </html>
