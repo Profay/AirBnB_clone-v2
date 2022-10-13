@@ -8,7 +8,12 @@
         <ul>
         {% for States in state_list | sort(attribute='name') %}
             <li>{{States.id}}: <b>{{States.name}}</b></li>
+            <ul>
+            {% for Cities in city_list | sort(attribute='name') %}
+                <li>{{Cities.id}}: <b>{{Cities.name}}</b></li>
+            {% endfor %}
+            </ul>
         {% endfor %}
-        </ul>
+    </ul>
     </body>
 </html>
