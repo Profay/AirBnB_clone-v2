@@ -22,12 +22,11 @@ app = Flask(__name__)
 def cities_by_states():
     """ Display a HTML page: (inside the tag BODY)
     H1 tag: “States”
-    UL tag: with the list of all State objects present in 
+    UL tag: with the list of all State objects present in
     DBStorage sorted by name (A->Z) tip
     """
-    city_list = storage.all(City).values()
     state_list = storage.all(State).values()
-    return render_template('8-cities_by_states.html', city_list=city_list, state_list=state_list)
+    return render_template('8-cities_by_states.html', state_list=state_list)
 
 
 @app.teardown_appcontext
