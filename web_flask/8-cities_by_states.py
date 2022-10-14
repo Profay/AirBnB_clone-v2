@@ -4,7 +4,7 @@ listening on 0.0.0.0, port 5000
 Routes:
 /cities_by_states: display a HTML page: (inside the tag BODY)
     H1 tag: “States”
-    UL tag: with the list of all State objects present in 
+    UL tag: with the list of all State objects present in
     DBStorage sorted by name (A->Z) tip
     LI tag: description of one State: <state.id>: <B><state.name></B>
 """
