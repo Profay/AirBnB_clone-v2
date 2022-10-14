@@ -4,7 +4,7 @@ listening on 0.0.0.0, port 5000
 Routes:
     /: display “Hello HBNB!”
     /hbnb: display "HBNB"
-    /c/<text>: display “C ” 
+    /c/<text>: display “C ”
 """
 
 from flask import Flask

@@ -31,7 +31,7 @@ app = Flask(__name__)
 def states():
     """ Display a HTML page: (inside the tag BODY)
     H1 tag: “States”
-    UL tag: with the list of all State objects present in
+    UL tag: with the list of all State objects present ing
     DBStorage sorted by name (A->Z) tip
     """
     state_list = storage.all(State).values()
