@@ -48,9 +48,10 @@ def states_by_id(state_id):
     state_list = storage.all(State).values()
     for states in state_list:
         if states.id == state_id:
-            return render_template('9-states.html', state=states, state_id=True)
+            return render_template('9-states.html',
+                                   state=states, state_id=True)
     return render_template('9-states.html')
-    
+
 
 @app.teardown_appcontext
 def shutdown_session(exception=None):
