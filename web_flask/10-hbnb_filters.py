@@ -8,6 +8,7 @@ Routes:
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+from models.amenity import Amenity
 
 
 app = Flask(__name__)
@@ -19,7 +20,8 @@ def filter_hbnb_filters():
     Display a HTML page: (inside the tag BODY)
     """
     state_list = storage.all(State).values()
-    return render_template("10-hbnb_filters.html", state_list=state_list)
+    amenity_list = storage.all(Amenity).values()
+    return render_template("10-hbnb_filters.html", state_list=state_list, amenity_list=amenity_list)
 
 
 @app.teardown_appcontext

@@ -33,12 +33,11 @@
 				</div>
 				<div class="amenities">
 					<h3>Amenities</h3>
-					<h4>Internet, Kitchen...</h4>
+					<h4>&nbsp;</h4>
 					<ul class="popover">
-						<li><h4>Internet</h4></li>
-						<li><h4>TV</h4></li>
-						<li><h4>Kitchen</h4></li>
-						<li><h4>Iron</h4></li>
+                        {% for amenity in amenity_list | sort(attribute='name') %}
+						<li><h4>{{amenity.name}}</h4></li>
+                        {% endfor %}
 					</ul>
 				</div>
 
